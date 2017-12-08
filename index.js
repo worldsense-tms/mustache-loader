@@ -56,20 +56,20 @@ module.exports = function(source) {
         suffix = 'return T.render.apply(T, arguments); };';
     }
     if (query.clientSide) {
-        return 'var H = require("hogan.js/template");\n' +
+        return 'var H = require("hogan.js");\n' +
             'module.exports = function() { ' +
             'var src = ' + JSON.stringify(source) + ' \n' +
             'var T = H.compile(src, ' + JSON.stringify(hoganOpts) + ');\n' + suffix;
     }
     if (query.tiny) {
-        return 'var H = require("hogan.js/template");\n' +
+        return 'var H = require("hogan.js/lib/template");\n' +
             'module.exports = function() { ' +
              'var T = new H.Template(' +
             Hogan.compile(source, hoganOpts) +
             ');' + suffix;
     }
 
-    return 'var H = require("hogan.js/template");\n' +
+    return 'var H = require("hogan.js/lib/template");\n' +
            'module.exports = function() { ' +
            'var T = new H.Template(' +
            Hogan.compile(source, hoganOpts) +
